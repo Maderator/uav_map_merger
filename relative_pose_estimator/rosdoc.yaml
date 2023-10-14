@@ -1,0 +1,7 @@
+# this is rosdoc_lite configuration file
+# see http://wiki.ros.org/rosdoc_lite
+
+- builder: doxygen
+  name: C++ API
+  output_dir: c++
+  file_patterns: '*.c *.cpp *.h *.cc *.hh *.dox'

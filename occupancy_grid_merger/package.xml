@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>occupancy_grid_merger</name>
+  <version>0.0.1</version>
+  <description>occupancy_grid_merger</description>
+
+  <author email="maderja1@fel.cvut.cz">Jan Madera</author>
+  <maintainer email="maderja1@fel.cvut.cz">Jan Madera</maintainer>
+
+  <license>BSD 3-Clause</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>nodelet</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>mrs_msgs</depend>
+  <depend>mrs_lib</depend>
+  <depend>dynamic_reconfigure</depend>
+  <!-- my dependencies  -->
+  <depend>hector_map_tools</depend>
+  <depend>image_transport</depend>
+  <depend>cv_bridge</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <export>
+
+    <!-- The plugins.xml file defines nodelet as a plugin -->
+    <nodelet plugin="${prefix}/plugins.xml" />
+
+  </export>
+
+</package>

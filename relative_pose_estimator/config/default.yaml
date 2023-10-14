@@ -1,0 +1,3 @@
+# rates of timers in Hz
+rate:
+  publish_relative_pose: 20 # [Hz]

@@ -1,0 +1,5 @@
+<library path="lib/libOccupancyGridMerger">
+  <class name="occupancy_grid_merger/OccupancyGridMerger" type="occupancy_grid_merger::OccupancyGridMerger" base_class_type="nodelet::Nodelet">
+    <description>OccupancyGridMerger nodelet</description>
+  </class>
+</library>

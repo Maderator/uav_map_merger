@@ -1,0 +1,5 @@
+<library path="lib/libRelativePoseEstimator">
+  <class name="relative_pose_estimator/RelativePoseEstimator" type="relative_pose_estimator::RelativePoseEstimator" base_class_type="nodelet::Nodelet">
+    <description>RelativePoseEstimator nodelet</description>
+  </class>
+</library>

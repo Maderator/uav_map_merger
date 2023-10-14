@@ -1,0 +1,30 @@
+# rates of timers in Hz
+rate:
+  publish_occupancy_grid_map_merging: 0.33 # [Hz]
+  publish_relative_pose: 1 # [Hz]
+  # check for messages
+  check_subscribers: 1 # [Hz]
+
+# acceptance threshold (how many tiles in percents have to match between maps)
+acceptance_threshold: 0.99
+
+# Threshold of certainty for tile to be considered occupied.
+occupancy_threshold: 0.01
+
+# Size of evolution population
+population_size: 300
+
+# minimal time in microseconds for which the evolution will be running
+min_micro_sec: 1000000 # 1 second
+
+# maximal time in microseconds for which the evolution will be running
+max_micro_sec: 120000000 # 2 second
+
+# Error range of position and yaw angle for initialization of population from approximation of initial relative pose
+err_range: 0.30 # in percent of size of bigger map <0,1> -> <0,half_length_of_longer_side_of_image>
+
+err_angle: 0.3 # in percent of radians <0,1> -> <0,PI>
+
+# if the UAVs start close together, the maps will align accordingly
+# True if they start close together, False otherwise
+starting_close: True

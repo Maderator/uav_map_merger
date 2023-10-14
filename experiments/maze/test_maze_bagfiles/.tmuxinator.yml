@@ -1,0 +1,33 @@
+name: simulation
+root: ./
+startup_window: merger
+pre_window: export UAV_NAME=uav1; export RUN_TYPE=simulation_local; export UAV_TYPE=f450; export ODOMETRY_TYPE=hector; export WORLD_NAME=simulation_local
+windows:
+  - rosbag:
+      layout: tiled
+      panes:
+        - waitForRos; rosbag play --clock /home/maderja1/bag_files/latest/maze_one_positive_x.bag -l -s 145 -u 10
+        - waitForRos; ./play_rosbag_on_uav.sh uav1 uav2 uav1 1 /home/maderja1/bag_files/latest/maze_one_negative_x.bag
+  - merger:
+     layout: tiled
+     panes:
+       - waitForOdometry; roslaunch -v occupancy_grid_merger throttle.launch gui:=false debug:=false
+       - waitForOdometry; roslaunch -v relative_pose_estimator throttle.launch
+  - merger_calls:
+     layout: tiled
+     panes:
+        - history -s rosservice call /$UAV_NAME/occupancy_grid_merger/test
+        - history -s rosservice call /$UAV_NAME/occupancy_grid_merger/merge_occupancy_grid_map
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForOdometry; roslaunch mrs_uav_testing rviz.launch name:=maze_test
+        - waitForOdometry; roslaunch mrs_rviz_plugins load_robot.launch
+  - dynamic_reconfigure:
+      layout: tiled
+      panes:
+        - waitForControl; rosrun rqt_reconfigure rqt_reconfigure

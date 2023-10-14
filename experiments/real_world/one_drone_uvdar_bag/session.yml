@@ -1,0 +1,34 @@
+name: simulation
+root: ./
+startup_window: status
+pre_window: export UAV_NAME=uav47; export RUN_TYPE=simulation; export UAV_TYPE=f450; export ODOMETRY_TYPE=hector; export WORLD_NAME=simulation
+windows:
+  - rosbag:
+      layout: tiled
+      panes:
+        - waitForOdometry; rosrun occupancy_grid_merger record.sh
+        - waitForOdometry; rosrun topic_tools throttle messages /uav47/hector_mapping/map 0.2
+        - waitForRos; rosparam set use_sim_time true; rosbag play --clock /home/maderja1/bag_files/camp_uvdar/swarms_andriy/quebec/7_2020_06_03_17_14_05/_2020-06-03-17-14-41.bag
+          #- waitForControl; rosrun topic_tools throttle messages hector_mapping/map 
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - hector_slam:
+      layout: tiled
+      panes:
+        - waitForOdometry; sleep 8.0; roslaunch mrs_uav_general hector_slam_rplidar_fcu_untitled.launch
+        #        - waitForOdometry; roslaunch hector_mapping mapping_default.launch
+  - dynamic_reconfigure:
+      layout: tiled
+      panes:
+        - waitForOdometry; rosrun rqt_reconfigure rqt_reconfigure
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForOdometry; roslaunch mrs_uav_testing rviz.launch
+        - waitForOdometry; roslaunch mrs_rviz_plugins load_robot.launch
+  - layout:
+      layout: tiled
+      panes:
+        #       - waitForControl; sleep 3; ~/.i3/layout_manager.sh ./layout.json

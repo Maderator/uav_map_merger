@@ -1,0 +1,37 @@
+name: simulation
+root: ./
+startup_window: merger
+pre_window: export UAV_NAME=uav45; export RUN_TYPE=simulation; export UAV_TYPE=f450; export ODOMETRY_TYPE=hector; export WORLD_NAME=simulation_local
+windows:
+  - rosbag:
+      layout: tiled
+      panes:
+        - waitForRos; ./play_rosbag_on_uav_merg.sh uav45 uav45 uav45 0 /home/maderja1/bag_files/og_merging/28_2020_06_04_09_17_53_longest_flight_through_most_of_the_parts_of_other_og/_2020-06-04-09-18-41.bag
+        - waitForRos; ./play_rosbag_on_uav_rec.sh uav45 uav2 uav45 1 /home/maderja1/bag_files/og_merging/14_2020_06_03_10_20_47_long_flight_circle_to_pos_y_good/_2020-06-03-10-21-39.bag 254 10
+        #- waitForRos; rosbag play -r 0.1 /home/maderja1/bag_files/bagfiles/occup_map1.bag /uav1/hector_mapping/map:=/uav45/hector_mapping/rosbag_map -l 
+        #- waitForControl; rosrun occupancy_grid_merger record.sh
+        #- waitForControl; rosrun topic_tools throttle messages hector_mapping/map 0.01
+        #- waitForControl; rosrun topic_tools throttle messages hector_mapping/map 
+  - merger:
+     layout: tiled
+     panes:
+        - waitForRos; roslaunch -v occupancy_grid_merger throttle.launch gui:=false debug:=false
+        - waitForOdometry; roslaunch -v relative_pose_estimator throttle.launch
+  - merger_calls:
+     layout: tiled
+     panes:
+        - history -s rosservice call /$UAV_NAME/occupancy_grid_merger/test
+        - history -s rosservice call /$UAV_NAME/occupancy_grid_merger/merge_occupancy_grid_map
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch mrs_uav_testing rviz.launch name:=my_forest_papa_camp_test
+        - waitForRos; roslaunch mrs_rviz_plugins load_robot.launch
+  - dynamic_reconfigure:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun rqt_reconfigure rqt_reconfigure

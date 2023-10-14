@@ -1,0 +1,42 @@
+name: simulation
+root: ./
+startup_window: merger
+pre_window: export UAV_NAME=uav46; export RUN_TYPE=simulation; export UAV_TYPE=f450; export ODOMETRY_TYPE=hector; export WORLD_NAME=simulation_local
+windows:
+  - rosbag:
+      layout: tiled
+      panes:
+        - export UAV_NAME=uav46; waitForRos; rosbag play --clock /home/maderja1/bag_files/camp_uvdar/my_hector/_2020-08-04-16-44-37_oscar_uvdar.bag
+        - export UAV_NAME=uav47; waitForRos; rosbag play /home/maderja1/bag_files/camp_uvdar/my_hector/_2020-08-04-16-51-53_quebec_uvdar.bag
+        #- waitForRos; rosbag play -r 0.1 /home/maderja1/bag_files/bagfiles/occup_map1.bag /uav1/hector_mapping/map:=/uav45/hector_mapping/rosbag_map -l 
+        #- waitForControl; rosrun occupancy_grid_merger record.sh
+        #- waitForControl; rosrun topic_tools throttle messages hector_mapping/map 0.01
+        #- waitForControl; rosrun topic_tools throttle messages hector_mapping/map 
+  - merger:
+     layout: tiled
+     panes:
+        - export UAV_NAME=uav46; waitForOdometry; roslaunch -v occupancy_grid_merger uvdar_rosbag.launch gui:=false debug:=false
+        - waitForOdometry; roslaunch -v relative_pose_estimator simulation.launch
+  - merger_calls:
+     layout: tiled
+     panes:
+        - export UAV_NAME=uav46; history -s rosservice call /$UAV_NAME/occupancy_grid_merger/test
+        - export UAV_NAME=uav46; history -s rosservice call /$UAV_NAME/occupancy_grid_merger/merge_occupancy_grid_map
+  - relay:
+      layout: tiled
+      panes:
+        - waitForOdometry; rosrun topic_tools relay /uav47/hector_mapping/map /uav46/hector_mapping/received_map1
+        - waitForOdometry; rosrun topic_tools relay /uav47/odometry/odom_main /uav46/odometry/odom_main_rec1
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - rviz:
+      layout: tiled
+      panes:
+        - export UAV_NAME=uav46; waitForOdometry; roslaunch mrs_uav_testing rviz.launch name:=uvdar_rosbag
+        - export UAV_NAME=uav46; waitForOdometry; roslaunch mrs_rviz_plugins load_robot.launch
+  - dynamic_reconfigure:
+      layout: tiled
+      panes:
+        - export UAV_NAME=uav46; waitForOdometry; rosrun rqt_reconfigure rqt_reconfigure
