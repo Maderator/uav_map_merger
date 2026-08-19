@@ -1,7 +1,7 @@
 /**  @file
  *   @author Jan Maděra <maderja@fel.cvut.cz> (janmadera97@gmail.com)
  *   @date 2020
- *   @copyright The 3-Clause BDS License
+ *   @copyright The BSD 3-Clause License
  */
 
 #include "Evolution.h"

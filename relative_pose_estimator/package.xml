@@ -3,12 +3,12 @@
 
   <name>relative_pose_estimator</name>
   <version>0.0.1</version>
-  <description>relative_pose_etimator</description>
+  <description>Estimates UAV poses relative to each other and to the merged map.</description>
 
   <maintainer email="janmadera97@gmail.com">Jan Madera</maintainer>
   <author email="maderja1@fel.cvut.cz">Jan Madera</author>
 
-  <license>BDS3</license>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 

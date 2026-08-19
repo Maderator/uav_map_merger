@@ -2,7 +2,7 @@
  *   @brief Contains definition of nodelet OccupancyGridMerger
  *   @author Jan Maděra <maderja@fel.cvut.cz> (janmadera97@gmail.com)
  *   @date 2020
- *   @copyright The 3-Clause BDS License
+ *   @copyright The BSD 3-Clause License
  */
 
 /* include header file of this class */

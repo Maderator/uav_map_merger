@@ -1,0 +1,32 @@
+# Catkin workspaces
+/build/
+/devel/
+/install/
+/log/
+/.catkin_tools/
+/.catkin_workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# ROS runtime data
+.ros/
+*.bag
+*.bag.active
+*.bag.orig.active
+*.bag.reindexed
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*~

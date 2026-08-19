@@ -3,12 +3,12 @@
 
   <name>occupancy_grid_merger</name>
   <version>0.0.1</version>
-  <description>occupancy_grid_merger</description>
+  <description>Merges occupancy-grid maps and estimates their relative pose.</description>
 
   <author email="maderja1@fel.cvut.cz">Jan Madera</author>
-  <maintainer email="maderja1@fel.cvut.cz">Jan Madera</maintainer>
+  <maintainer email="janmadera97@gmail.com">Jan Madera</maintainer>
 
-  <license>BSD 3-Clause</license>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 

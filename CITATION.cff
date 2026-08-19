@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "UAV Map Merger"
+type: software
+authors:
+  - family-names: "Maděra"
+    given-names: "Jan"
+repository-code: "https://github.com/Maderator/uav_map_merger"
+url: "https://github.com/Maderator/uav_map_merger"
+license: "BSD-3-Clause"
+abstract: >-
+  ROS 1 implementation of a genetic-algorithm-based method for merging
+  occupancy-grid maps produced by UAVs, created as part of the bachelor thesis
+  Map Merging for UAV Swarms at Czech Technical University in Prague.
+keywords:
+  - ROS
+  - UAV
+  - occupancy-grid map merging

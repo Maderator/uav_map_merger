@@ -92,4 +92,4 @@ Current maintenance work focuses on:
 
 ## License
 
-The ROS package manifests declare BSD-style licensing and the package directories contain license files. The declarations should still be reviewed for consistency before adding a single repository-level license statement.
+This repository is licensed under the [BSD 3-Clause License](LICENSE). The package-level license files preserve the original copyright notices for their respective packages.
